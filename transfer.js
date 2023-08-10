@@ -1,186 +1,35 @@
-// Bridge to access web3
-const { ethers } = require("ethers");
-
-// Network, transfer amount, Network's etherscan
-const { RPC, ETH, ETHERSCAN } = require("./config");
-
-// Addresses
-const { W_2, W_3, W_4, W_5, W_6, W_7, W_8, W_9, W_10, W_11, W_12, W_13, W_14, W_15, W_16, W_18, W_19, W_20 } = require("./config").addresses;
-
-// Private key
-const { main } = require("./config").keys;
-
-// Connect to blockchain
-const provider = new ethers.providers.JsonRpcProvider(RPC);
-
-// Create wallets for main
-const walletMain = new ethers.Wallet(main, provider);
-
-// Amount to transfer
-const transferAmount = ethers.utils.parseEther(ETH);
-
-// Transfer function
-(async function () {
-  try {
-    console.log("== Starting Transaction ==");
-
-    // Send ETH from main to W_2
-    const transaction1 = await walletMain.sendTransaction({
-      to: W_2,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_2. Tx => [${transaction1.hash}]`);
-
-    // Send ETH from main to W_3
-    const transaction2 = await walletMain.sendTransaction({
-      to: W_3,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_3. Tx => [${transaction2.hash}]`);
-
-    // Send ETH from main to W_4
-    const transaction3 = await walletMain.sendTransaction({
-      to: W_4,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_4. Tx => [${transaction3.hash}]`);
-
-    // Send ETH from main to W_5
-    const transaction4 = await walletMain.sendTransaction({
-      to: W_5,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_5. Tx => [${transaction4.hash}]`);
-
-    // Send ETH from main to W_6
-    const transaction5 = await walletMain.sendTransaction({
-      to: W_6,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_6. Tx => [${transaction5.hash}]`);
-
-    // Send ETH from main to W_7
-    const transaction6 = await walletMain.sendTransaction({
-      to: W_7,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_7. Tx => [${transaction6.hash}]`);
-
-    // Send ETH from main to W_8
-    const transaction7 = await walletMain.sendTransaction({
-      to: W_8,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_8. Tx => [${transaction7.hash}]`);
-
-    // Send ETH from main to W_9
-    const transaction8 = await walletMain.sendTransaction({
-      to: W_9,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_9. Tx => [${transaction8.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_10,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_10. Tx => [${transaction9.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_11,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_11. Tx => [${transaction10.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_12,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_12. Tx => [${transaction11.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_13,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_13. Tx => [${transaction12.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_14,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_14. Tx => [${transaction13.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_15,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_15. Tx => [${transaction14.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_16,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_16. Tx => [${transaction15.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_17,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_17. Tx => [${transaction16.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_18,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_18. Tx => [${transaction17.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_19,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_19. Tx => [${transaction18.hash}]`);
-
-    // Send ETH from main to W_10
-    const transaction9 = await walletMain.sendTransaction({
-      to: W_20,
-      value: transferAmount,
-    });
-
-    console.log(`Transfer Successful to W_20. Tx => [${transaction19.hash}]`);
-    
-    console.log(`== Transfers Complete! ==`);
-    console.log(`See transactions at: ${ETHERSCAN}/address/${walletMain.address}`);
-
-    //Log errors to the terminal
-  } catch (err) {
-    console.error(err);
-  }
+const { ethers } = require("ethers"); 
+const { RPC, ETH, ETHERSCAN } = require("./config"); 
+const { W_2, W_3, W_4, W_5, W_6, W_7, W_8, W_9, W_10 } = require("./config").addresses; 
+const { main } = require("./config").keys; 
+const provider = new ethers.providers.JsonRpcProvider(RPC); 
+const walletMain = new ethers.Wallet(main, provider); 
+const transferAmount = ethers.utils.parseEther(ETH); 
+const addressList = [W_2, W_3, W_4, W_5, W_6, W_7, W_8, W_9, W_10]; 
+const readline = require("readline"); 
+const rl = readline.createInterface({ 
+  input: process.stdin, 
+  output: process.stdout, 
+}); 
+(async function () { 
+  try { 
+    console.log("== Starting Transaction =="); 
+    rl.question("Mau transfer berapa kali? ", async function (iterations) { 
+      let transferCount = 0; 
+      for (let i = 0; i &lt; iterations; i++) { 
+        const address = addressList[i % addressList.length]; 
+        const transaction = await walletMain.sendTransaction({ 
+          to: address, 
+          value: transferAmount, 
+        }); 
+        transferCount++; 
+        console.log(`Transfer ${transferCount} Successful to ${address}. Tx =&gt; [${transaction.hash}]`); 
+      } 
+      console.log(`== Transfers Complete! ==`); 
+      console.log(`See transactions at: ${ETHERSCAN}/address/${walletMain.address}`); 
+      rl.close(); 
+    }); 
+  } catch (err) { 
+    console.error(err); 
+  } 
 })();
