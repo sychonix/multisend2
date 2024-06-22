@@ -17,5 +17,5 @@ exports.addresses = {
 };
 
 exports.keys = {
-  main: "",
+  main: "privkey",
 };
