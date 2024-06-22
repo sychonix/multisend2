@@ -22,32 +22,33 @@ function delay(ms) {
 
     const tokenContract = new ethers.Contract(tokenAddress, tokenABI, wallet);
 
-    const transferAmount = ethers.BigNumber.from("100000000000000"); // Ganti dgn jumlah token yang ingin di transfer
+    const transferAmount = ethers.BigNumber.from("100000000000000"); // Ganti dengan jumlah token 
 
-    const iterations = 1000; //  jumlah pengulangan melakukan transaksi berulang
+    const transactionsPerBatch = 50; // Jumlah transaksi per batch
+    const delayBetweenBatches = 12 * 60 * 60 * 1000; // 12 jam
 
     let transferCounter = 0; // Inisialisasi counter untuk nomor urut transfer
+    let addressIndex = 2; // Mulai dari W_2 
 
-    for (let j = 0; j < iterations; j++) {
-      console.log(`=== Iterasi ${j + 1} ===`);
+    for (let j = 0; j < Infinity; j++) { // Loop tanpa batas, bisa diubah sesuai kebutuhan
+      console.log(`=== Batch ${j + 1} ===`);
       
-      for (let i = 0; i < 1999; i++) {
+      for (let i = 0; i < transactionsPerBatch; i++) {
         try {
-          const toAddress = addresses[`W_${i + 2}`];
+          const toAddress = addresses[`W_${addressIndex}`];
           const transaction = await tokenContract.transfer(toAddress, transferAmount);
           transferCounter++; // Tambahkan counter setiap kali transfer berhasil
           console.log(`Transfer Berhasil ke ${toAddress}. Tx => [${transaction.hash}] - Nomor Urut: ${transferCounter}`);
+          addressIndex++;
         } catch (innerErr) {
           // Hilangkan atau komentar baris berikut untuk menghilangkan log error
-          // console.error(`Gagal transfer ke ${addresses[`W_${i + 2}`]}. Error: ${innerErr.message}`);
+          // console.error(`Gagal transfer ke ${addresses[`W_${addressIndex}`]}. Error: ${innerErr.message}`);
+          addressIndex++; // Tetap tingkatkan indeks alamat bahkan jika gagal
         }
       }
-      // Tambahkan delay 60 detik setiap selesai satu iterasi
-      await delay(60000);
+      console.log(`== Menunggu 12 jam sebelum batch berikutnya ==`);
+      await delay(delayBetweenBatches);
     }
-
-    console.log(`== Transfer Selesai! ==`);
-    console.log(`Lihat transaksi di: ${ETHERSCAN}/address/${wallet.address}`);
 
   } catch (err) {
     // Hilangkan atau komentar baris berikut untuk menghilangkan log error utama
