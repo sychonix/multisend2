@@ -17,5 +17,5 @@ exports.addresses = {
 };
 
 exports.keys = {
-  main: "0xca32ba0c5af81bd7696c3c59a8cc9dc5b0047a7944878b49fa2aac9817ba7fe5",
+  main: "",
 };
