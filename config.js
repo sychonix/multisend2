@@ -1,6 +1,7 @@
 // Network configuration
 exports.RPC = "https://hybrid-testnet.rpc.caldera.xyz/http";
 exports.ETHERSCAN = "https://explorer.buildonhybrid.com/";
+exports.ETH = "0.0000005";
 exports.keys = {
   main: "PRIVATE KEY WALLET",
 };
