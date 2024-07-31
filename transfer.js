@@ -11,6 +11,14 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getRandomDelay(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 (async function () {
   try {
     console.log("== Starting Transaction ==");
@@ -24,6 +32,9 @@ const rl = readline.createInterface({
         });
         transferCount++;
         console.log(`Transfer ${transferCount} Successful to ${address}. Tx => [${transaction.hash}]`);
+        const delayTime = getRandomDelay(10000, 40000);
+        console.log(`Delay ${delayTime / 1000} detik...`);
+        await delay(delayTime); // random delay 10-40 detik
       }
       console.log(`== Transfers Complete! ==`);
       console.log(`See transactions at: ${ETHERSCAN}/address/${walletMain.address}`);
